@@ -281,7 +281,7 @@ gmx editconf -f min.gro -c -box 4 4 4 -o start.gro #&> /dev/null
 #Md (100 ps)
 echo -e "\n Run MD - $Ion1-$Ion2 - $((n1+n2)) $Solv \n"
  gmx grompp -f verlet.mdp -c start.gro -p system.top -o md.tpr #&> /dev/null
- gmx mdrun -v -deffnm md -nsteps $nstepsmd -plumed plumed.dat -pin on -pinoffset $POFF -ntomp $NTOMP #&> /dev/null
+ gmx mdrun -v -deffnm md -nsteps $nstepsmd -plumed plumed.dat -ntomp $NTOMP #&> /dev/null
 
 #gmx solvate -cp min2.gro -cs struct/ec_equil_1000.gro -p system.top -o solv.gro 
 #gmx select -f solv.gro -s solv.gro -on solv.ndx -select "atomname O2" &> /dev/null
@@ -366,7 +366,7 @@ EOF
 # WT-MTD (1000 ps)
 echo -e "\n Run WT-MTD - $Ion1 - $Ion2 and $((n1+n2)) $Solv \n"
  gmx grompp -f verlet.mdp -c md.gro -p system.top -o mtd.tpr #&> /dev/null
- gmx mdrun -v -deffnm mtd -nsteps $nstepsmtd -plumed plumed_MTD.dat -pin on -pinoffset $POFF -ntomp $NTOMP #&> /dev/null
+ gmx mdrun -v -deffnm mtd -nsteps $nstepsmtd -plumed plumed_MTD.dat -ntomp $NTOMP #&> /dev/null
 
 ###############################
 rm -rf barrier
